@@ -28,7 +28,7 @@
     <import resource="classpath:mybatis/mybatis-config.xml"/>
     <import resource="applicationContext-jdbc.xml" />
 
-    <context:component-scan base-package="com.nanooda.web, com.nanooda.framework.security">
+    <context:component-scan base-package="com.brewduck.web, com.brewduck.framework.security">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 

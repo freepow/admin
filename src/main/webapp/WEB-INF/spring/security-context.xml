@@ -8,15 +8,15 @@
                                  http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <!-- 로그인/로그아웃 관련 모듈 -->
-    <beans:bean id="authenticationSuccessHandler" class="com.nanooda.framework.security.UserAuthenticationSuccessHandler" />
-    <beans:bean id="authenticationFailureHandler" class="com.nanooda.framework.security.UserAuthenticationFailureHandler" />
+    <beans:bean id="authenticationSuccessHandler" class="com.brewduck.framework.security.UserAuthenticationSuccessHandler" />
+    <beans:bean id="authenticationFailureHandler" class="com.brewduck.framework.security.UserAuthenticationFailureHandler" />
 
     <!-- 데이터베이스 로그인 처리 -->
-    <beans:bean id="userDetailService" class="com.nanooda.framework.security.UserDetailServiceImpl" >
+    <beans:bean id="userDetailService" class="com.brewduck.framework.security.UserDetailServiceImpl" >
         <beans:property name="accountService" ref="accountService" />
     </beans:bean>
 
-    <beans:bean id="logoutHandler" class="com.nanooda.framework.security.LogoutHandler" />
+    <beans:bean id="logoutHandler" class="com.brewduck.framework.security.LogoutHandler" />
 
     <http pattern="/resources/**" security="none" />
     <http pattern="/favicon.ico" security="none" />
@@ -46,7 +46,7 @@
     </authentication-manager>
 
     <!-- 인증관련 모듈 -->
-    <beans:bean id="authenticationProvider" class="com.nanooda.framework.security.AuthenticationProviderImpl">
+    <beans:bean id="authenticationProvider" class="com.brewduck.framework.security.AuthenticationProviderImpl">
         <beans:property name="authenticationService" ref="authenticationService" />
         <beans:property name="userDetailsService" ref="userDetailService" />
     </beans:bean>

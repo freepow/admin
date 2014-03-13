@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Hop">
+
+    <sql id="Hop.selectHop">
+        SELECT
+               name             name
+              ,korean_name      koreanName
+              ,version          version
+              ,alpha            alpha
+              ,amount           amount
+              ,hops_use         hopsUse
+              ,time             time
+              ,notes            notes
+              ,type             type
+              ,form             form
+              ,beta             beta
+              ,hsi              hsi
+              ,origin           origin
+              ,substitutes      substitutes
+              ,humulene         humulene
+              ,caryophyllene    caryophyllene
+              ,cohumulone       cohumulone
+              ,myrcene          myrcene
+              ,insert_id        insertId
+              ,insert_date      insertDate
+              ,update_id        updateId
+              ,update_date      updateDate
+              ,delete_id        deleteId
+              ,delete_date      deleteDate
+          FROM brewduckdb.HOPS
+    </sql>
+
+    <sql id="Hop.selectRecipeHop">
+        SELECT
+               b.name             name
+              ,b.korean_name      koreanName
+              ,b.version          version
+              ,b.alpha            alpha
+              ,b.amount           amount
+              ,b.hops_use         hopsUse
+              ,b.time             time
+              ,b.notes            notes
+              ,b.type             type
+              ,b.form             form
+              ,b.beta             beta
+              ,b.hsi              hsi
+              ,b.origin           origin
+              ,b.substitutes      substitutes
+              ,b.humulene         humulene
+              ,b.caryophyllene    caryophyllene
+              ,b.cohumulone       cohumulone
+              ,b.myrcene          myrcene
+              ,b.insert_id        insertId
+              ,b.insert_date      insertDate
+              ,b.update_id        updateId
+              ,b.update_date      updateDate
+              ,b.delete_id        deleteId
+              ,b.delete_date      deleteDate
+          FROM brewduckdb.RECIPE_HOPS a
+              ,brewduckdb.HOPS b
+         WHERE a.hops_name = b.name
+    </sql>
+
+    <select id="Hop.selectHopList" parameterType="Hop" resultType="Hop">
+        <!-- 맥주 홉 목록 조회 -->
+        <include refid="Hop.selectHop" />
+        WHERE delete_id IS NULL
+    </select>
+
+    <select id="Hop.selectRecipeHopList" parameterType="Hop" resultType="Hop">
+        <!-- 맥주 레시피 홉 목록 조회 -->
+        <include refid="Hop.selectRecipeHop" />
+          AND a.name = #{name}
+          AND b.delete_id IS NULL
+    </select>
+
+    <select id="Hop.selectHopDetail" parameterType="Hop" resultType="Hop">
+        <!-- 맥주 홉 상세 조회 -->
+        <include refid="Hop.selectHop" />
+        WHERE delete_id IS NULL
+        <if test="name != null">
+            AND name = #{name}
+        </if>
+        <if test="type != null">
+            AND type = #{type}
+        </if>
+    </select>
+
+    <insert id="Hop.insertHop" parameterType="Hop">
+        <!-- 맥주 홉 저장 -->
+        INSERT INTO brewduckdb.HOPS (
+             name
+            ,korean_name
+            ,version
+            ,alpha
+            ,amount
+            ,hops_use
+            ,time
+            ,notes
+            ,type
+            ,form
+            ,beta
+            ,hsi
+            ,origin
+            ,substitutes
+            ,humulene
+            ,caryophyllene
+            ,cohumulone
+            ,myrcene
+            ,insert_id
+            ,insert_date
+        ) VALUES (
+             #{name}
+            ,#{koreanName}
+            ,#{version}
+            ,#{alpha}
+            ,#{amount}
+            ,#{hopsUse}
+            ,#{time}
+            ,#{notes}
+            ,#{type}
+            ,#{form}
+            ,#{beta}
+            ,#{hsi}
+            ,#{origin}
+            ,#{substitutes}
+            ,#{humulene}
+            ,#{caryophyllene}
+            ,#{cohumulone}
+            ,#{myrcene}
+            ,#{insertId}
+            ,now()
+        )
+    </insert>
+
+    <update id="Hop.updateHop" parameterType="Hop">
+        <!-- 맥주 홉 수정 -->
+        UPDATE brewduckdb.HOPS
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="koreanName != null">
+                korean_name = #{koreanName},
+            </if>
+            <if test="alpha != null">
+                alpha = #{alpha},
+            </if>
+            <if test="amount != null">
+                amount = #{amount},
+            </if>
+            <if test="hopsUse != null">
+                hops_use = #{hopsUse},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+            <if test="notes != null">
+                notes = #{notes},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="form != null">
+                form = #{form},
+            </if>
+            <if test="beta != null">
+                beta = #{beta},
+            </if>
+            <if test="hsi != null">
+                hsi = #{hsi},
+            </if>
+            <if test="origin != null">
+                origin = #{origin},
+            </if>
+            <if test="substitutes != null">
+                substitutes = #{substitutes},
+            </if>
+            <if test="humulene != null">
+                humulene = #{humulene},
+            </if>
+            <if test="caryophyllene != null">
+                caryophyllene = #{caryophyllene},
+            </if>
+            <if test="cohumulone != null">
+                cohumulone = #{cohumulone},
+            </if>
+            <if test="myrcene != null">
+                myrcene = #{myrcene},
+            </if>
+            <if test="updateId != null">
+                update_id = #{updateId},
+            </if>
+            <if test="updateId != null">
+                update_date = now()
+            </if>
+        </trim>
+        WHERE name = #{name}
+    </update>
+
+    <update id="Hop.deleteHop" parameterType="Hop">
+        <!-- 맥주 홉 삭제 -->
+        UPDATE brewduckdb.HOPS
+           SET delete_id = #{deleteId}
+              ,delete_date = now()
+         WHERE name = #{name}
+    </update>
+
+</mapper>

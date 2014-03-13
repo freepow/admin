@@ -10,10 +10,11 @@
 
     <!--======= Difinition of MAPPER alias =======-->
     <typeAliases>
-        <typeAlias type="com.nanooda.web.domain.Account" alias="Account" />
-        <typeAlias type="com.nanooda.web.domain.User" alias="User" />
-        <typeAlias type="com.nanooda.web.domain.Profile" alias="Profile" />
-        <typeAlias type="com.nanooda.web.domain.Common" alias="Common" />
+        <typeAlias type="com.brewduck.web.domain.Account" alias="Account" />
+        <typeAlias type="com.brewduck.web.domain.User" alias="User" />
+        <typeAlias type="com.brewduck.web.domain.Profile" alias="Profile" />
+        <typeAlias type="com.brewduck.web.domain.Common" alias="Common" />
+        <typeAlias type="com.brewduck.web.domain.Hop" alias="Hop" />
     </typeAliases>
 
 </configuration>

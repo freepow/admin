@@ -2,7 +2,7 @@
 <!-- Breadcrumbs line -->
 <div class="crumbs">
     <ul id="breadcrumbs" class="breadcrumb">
-        <li><a href="index.html">Dashboard 222</a></li>
+        <li><a href="index.html">기초 데이터 관리 </a></li>
         <li class="active"><a href="calendar.html" title="">Calendar</a></li>
     </ul>
 

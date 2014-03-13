@@ -17,11 +17,11 @@
     <!-- Enables the Spring MVC @Controller programming model -->
     <annotation-driven conversion-service="conversionService" content-negotiation-manager="contentNegotiationManager">
         <argument-resolvers>
-            <beans:bean class="com.nanooda.framework.data.CustomArgumentResolver"/>
+            <beans:bean class="com.brewduck.framework.data.CustomArgumentResolver"/>
         </argument-resolvers>
         <async-support default-timeout="3000">
             <callable-interceptors>
-                <beans:bean class="com.nanooda.framework.async.TimeoutCallableProcessingInterceptor" />
+                <beans:bean class="com.brewduck.framework.async.TimeoutCallableProcessingInterceptor" />
             </callable-interceptors>
         </async-support>
         <message-converters register-defaults="false">
@@ -64,7 +64,7 @@
     <!-- Only needed because we install custom converters to support the examples in the org.springframewok.samples.mvc.convert package -->
     <beans:bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <beans:property name="formatters">
-            <beans:bean class="com.nanooda.framework.convert.MaskFormatAnnotationFormatterFactory" />
+            <beans:bean class="com.brewduck.framework.convert.MaskFormatAnnotationFormatterFactory" />
         </beans:property>
     </beans:bean>
 

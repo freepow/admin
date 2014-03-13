@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+
+    <select id="User.selectOne"
+            parameterType="User"
+            resultType="User">
+        <!-- 내 활동 내역 목록을 조회 -->
+        SELECT userid
+              ,name
+              ,email
+          FROM account
+         WHERE 1 = 1
+        <if test="userid != null">
+           AND userid = #{userid}
+        </if>
+    </select>
+
+    <select id="User.selectAccountList"
+            parameterType="User"
+            resultType="User">
+        <!-- 유저 조회 -->
+        SELECT
+            ID,
+            ACCOUNT_ID,
+            GENDER,
+            HEIGHT,
+            WEIGHT,
+            BLOOD_TYPE,
+            ADDRESS_ID,
+            BIRTH_DATE,
+            FAMILY_RELATIONS
+          FROM USERS
+         WHERE 1=1
+        <if test="accountId != 0">
+            AND account_id = #{accountId}
+        </if>
+    </select>
+
+    <select id="User.selectUser"
+            parameterType="User"
+            resultType="User">
+        <!-- 유저 조회 리스트 -->
+        SELECT
+            ID,
+            ACCOUNT_ID,
+            GENDER,
+            HEIGHT,
+            WEIGHT,
+            BLOOD_TYPE,
+            ADDRESS_ID,
+            BIRTH_DATE,
+            FAMILY_RELATIONS,
+            BIRTH_YEAR,
+            BIRTH_MONTH,
+            BIRTH_DAY
+          FROM USERS
+         WHERE 1=1
+        <if test="accountId != 0">
+           AND account_id = #{accountId}
+        </if>
+    </select>
+
+    <insert id="User.insertUser"
+            parameterType="User">
+        <!-- 프로필 생성 -->
+        INSERT INTO USERS (
+        id
+        ,account_id
+        ) values (
+        SEQ_USERS.NEXTVAL
+        ,#{accountId}
+        )
+    </insert>
+
+    <update id="User.updateUser"
+            parameterType="User">
+          UPDATE USERS
+              SET GENDER = #{gender}
+                 ,HEIGHT = #{height}
+                 ,WEIGHT = #{weight}
+                 ,BLOOD_TYPE = #{bloodType}
+                 ,BIRTH_YEAR = #{birthYear}
+                 ,BIRTH_MONTH = #{birthMonth}
+                 ,BIRTH_DAY = #{birthDay}
+           WHERE ACCOUNT_ID = #{accountId}
+    </update>
+
+    <select id="User.selectUserCnt"
+            parameterType="User"
+            resultType="int">
+        SELECT count(1) userCnt
+          FROM USERS
+         WHERE ROWNUM = 1
+        <if test="accountId != 0">
+            AND account_id = #{accountId}
+        </if>
+    </select>
+
+</mapper>

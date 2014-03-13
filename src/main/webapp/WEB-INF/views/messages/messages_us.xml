@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="country.code">us</entry>
+	<entry key="country.flag">usa</entry>
+	<entry key="country.name">United States</entry>
+</properties>
